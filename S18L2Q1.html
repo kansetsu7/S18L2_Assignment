@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script>
+      var state = true;
+      var timeLeft = 5;
+
+      function toggleLight() {
+        var image = document.getElementById("image");
+        state = !state;
+        image.src = state ? "img/on.jpg" : "img/off.jpg";
+      }
+
+      function countDownTimer() {
+        timeLeft = timeLeft - 1;
+        if (timeLeft <= 0) {
+          document.getElementById("image").src = "img/off.jpg";
+          clearInterval(setting);
+        }
+        document.getElementById("timer").innerHTML = timeLeft;
+      }
+
+      function setTime() {
+        var time = document.getElementById("set-time").value;
+        if (isNaN(time)) {
+          alert("Give me a number!")
+          return;
+        }
+        timeLeft = time;
+        document.getElementById("timer").innerHTML = time;
+      }
+
+      var setting = setInterval(countDownTimer, 1000);
+    </script>
+  </head>
+  <body>
+    <div class="div" id="timer">5</div>
+    <button class="button" onclick="toggleLight();">ON<br>-<br>OFF</button>
+    <form action="">
+      <input type="text" id="set-time">
+      <input type="button" value="定時" onclick="setTime();">
+    </form>
+    <img id="image" src="img/on.jpg">
+  </body>
+</html>

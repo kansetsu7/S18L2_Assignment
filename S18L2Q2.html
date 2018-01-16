@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <script>
+      function validate() {
+        document.getElementById("result").innerHTML = "";
+        var code = document.getElementById("nric").value;
+        if (code == "") {
+          alert("內容是空的，發出警告!");
+        } else if (!isNaN(code)) {
+          alert("內容不能是數字，發出警告!");
+        } else if (code.length != 10) {
+          alert("內容的長度不正確，發出警告!");
+        } else { 
+          validate_gender(code);
+        }
+      }
+
+      function validate_gender(code){
+        var gender = code.slice(1, 2);
+        console.log(gender);
+        if (isNaN(gender)) {
+          alert("第二碼" + gender + ", 應為數字，發出警告!");
+        }else if ( gender != 1 && gender !=2 ) {
+          alert("內容錯誤，發出警告!");
+        }else{
+          document.getElementById("result").innerHTML = "某男/女通過驗證";
+        }
+      }
+    </script>
+  </head>
+<body>
+  <form>
+    <input type="text" id="nric">
+    <input type="button" value="驗證" onclick="validate()">
+    <p id="result"></p>
+  </form>
+</body>
+</html>
